@@ -1,6 +1,6 @@
 import type { Client, ClientActivityEvent, ClientStatus } from "@/types";
 import { daysAgo, makeId, pick, randFloat, randInt, rngFor } from "./rng";
-import { CITIES_BY_COUNTRY, CLIENT_NAMES, COUNTRIES, INDUSTRIES, domainFor } from "./constants";
+import { CITIES_BY_COUNTRY, CLIENT_SEEDS, COUNTRIES, domainFor } from "./constants";
 import { users } from "./organizations";
 
 const STATUS_BY_INDEX: ClientStatus[] = [
@@ -20,9 +20,8 @@ const STATUS_BY_INDEX: ClientStatus[] = [
 
 const managers = users.filter((u) => u.role === "seo_manager" || u.role === "agency_owner");
 
-export const clients: Client[] = CLIENT_NAMES.map((name, index) => {
+export const clients: Client[] = CLIENT_SEEDS.map(({ name, industry }, index) => {
   const rng = rngFor(`client-${index}`);
-  const industry = INDUSTRIES[index % INDUSTRIES.length];
   const country = index % 5 === 0 ? pick(rng, COUNTRIES) : "Sri Lanka";
   const cities = CITIES_BY_COUNTRY[country] ?? ["Colombo"];
   const status = STATUS_BY_INDEX[index] ?? "active";

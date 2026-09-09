@@ -33,20 +33,20 @@ export const CITIES_BY_COUNTRY: Record<string, string[]> = {
   Singapore: ["Singapore"],
 };
 
-export const CLIENT_NAMES = [
-  "Northbridge Legal Partners",
-  "Serene Wellness Clinics",
-  "Kandy Ridge Real Estate",
-  "Coastal Breeze Resorts",
-  "Lanka Auto Traders",
-  "BrightPath Learning Academy",
-  "Ceylon Organic Foods",
-  "Horizon Finance Group",
-  "PulseTech Software",
-  "Emerald Isle Interiors",
-  "Metro Dental Care",
-  "Voyage Travel Collective",
-] as const;
+export const CLIENT_SEEDS = [
+  { name: "Northbridge Legal Partners", industry: "Legal Services" },
+  { name: "Serene Wellness Clinics", industry: "Healthcare & Wellness" },
+  { name: "Kandy Ridge Real Estate", industry: "Real Estate" },
+  { name: "Coastal Breeze Resorts", industry: "Hospitality & Travel" },
+  { name: "Lanka Auto Traders", industry: "Automotive" },
+  { name: "BrightPath Learning Academy", industry: "Education" },
+  { name: "Ceylon Organic Foods", industry: "Food & Beverage" },
+  { name: "Horizon Finance Group", industry: "Finance & Insurance" },
+  { name: "PulseTech Software", industry: "SaaS & Technology" },
+  { name: "Emerald Isle Interiors", industry: "Home Services" },
+  { name: "Metro Dental Care", industry: "Healthcare & Wellness" },
+  { name: "Voyage Travel Collective", industry: "Hospitality & Travel" },
+] as const satisfies { name: string; industry: (typeof INDUSTRIES)[number] }[];
 
 export const PERSON_FIRST_NAMES = [
   "Amara",
