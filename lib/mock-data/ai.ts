@@ -142,7 +142,123 @@ export const aiConversations: AIConversation[] = [
     ],
     updatedAt: daysAgo(2),
   },
+  {
+    id: "convo_0002",
+    title: "Which keywords should we target next?",
+    messages: [
+      {
+        id: "msg_0003",
+        role: "user",
+        content: "Which keywords should we target next?",
+        createdAt: daysAgo(1),
+      },
+      {
+        id: "msg_0004",
+        role: "assistant",
+        content:
+          "I'd prioritize 8 keywords sitting in positions 11-20 — these are the fastest wins since you're already ranking on page two. \"emergency plumber colombo\" (2,400 monthly searches, position 14) and \"affordable dental implants sri lanka\" (1,100 searches, position 12) have the strongest opportunity scores because you already have pages with decent content depth, just thin on internal links and structured data. I'd also flag 3 keywords where a competitor ranks but you have no page at all yet — those need net-new content rather than optimization, so they're a longer play.",
+        citations: [{ label: "Keyword Opportunities report" }, { label: "Rank Tracking — last 30 days" }],
+        suggestedFollowUps: [
+          "Which pages should I update first?",
+          "What's the fastest keyword win here?",
+          "Show me the content-gap keywords too.",
+        ],
+        createdAt: daysAgo(1),
+      },
+    ],
+    updatedAt: daysAgo(1),
+  },
+  {
+    id: "convo_0003",
+    title: "Find new content opportunities",
+    messages: [
+      {
+        id: "msg_0005",
+        role: "user",
+        content: "Find new content opportunities for us.",
+        createdAt: daysAgo(3),
+      },
+      {
+        id: "msg_0006",
+        role: "assistant",
+        content:
+          "I found 6 content opportunities worth prioritizing this month. Three are keyword gaps where your top competitor ranks in the top 5 but you have no page targeting the topic at all — the strongest is a comparison-style guide around \"SEO agency pricing in Sri Lanka\" (720 monthly searches, low competition). Two more are refresh opportunities: your \"local SEO checklist\" post from 14 months ago is still ranking on page one but has slipped 2 positions as competitors published longer, more current versions. I'd sequence the net-new pieces first since they compound over time, then refresh the ageing post in the same sprint.",
+        citations: [{ label: "Content Gap Analysis" }, { label: "Competitor keyword-gap report" }],
+        suggestedFollowUps: [
+          "Draft an outline for the pricing guide.",
+          "What should the refreshed checklist include?",
+          "Which competitor is winning this keyword?",
+        ],
+        createdAt: daysAgo(3),
+      },
+    ],
+    updatedAt: daysAgo(3),
+  },
+  {
+    id: "convo_0004",
+    title: "Why is this page not performing?",
+    messages: [
+      {
+        id: "msg_0007",
+        role: "user",
+        content: "Why is this page not performing?",
+        createdAt: daysAgo(5),
+      },
+      {
+        id: "msg_0008",
+        role: "assistant",
+        content:
+          "Looking at your lowest-performing indexed page, /services/teeth-whitening has dropped from position 6 to position 19 over the last 6 weeks while impressions stayed roughly flat — that pattern usually means a relevance or quality signal issue rather than lost demand. The page hasn't been updated in 11 months, it now has only 2 internal links pointing to it (down from 5 after a recent navigation change), and its Core Web Vitals show an LCP of 4.1s on mobile, well above the 2.5s target. Any one of these could cause a slide this size, but the combination of thin internal linking and poor LCP is the most likely driver based on how similar pages on your site have recovered before.",
+        citations: [
+          { label: "Search Console — Page performance" },
+          { label: "Core Web Vitals report" },
+          { label: "Internal Links audit" },
+        ],
+        suggestedFollowUps: [
+          "How do I fix the Core Web Vitals issue?",
+          "Which pages should link to this one?",
+          "Has a competitor overtaken this keyword?",
+        ],
+        createdAt: daysAgo(5),
+      },
+    ],
+    updatedAt: daysAgo(5),
+  },
+  {
+    id: "convo_0005",
+    title: "This month's SEO strategy",
+    messages: [
+      {
+        id: "msg_0009",
+        role: "user",
+        content: "Give me this month's SEO strategy.",
+        createdAt: daysAgo(9),
+      },
+      {
+        id: "msg_0010",
+        role: "assistant",
+        content:
+          "Here's where I'd focus this month, in priority order. First, technical: 4 pages are throwing intermittent 500 errors during crawl — get those stable before anything else, since crawl errors suppress everything downstream. Second, content: publish the 2 content-gap pieces scoped last week to capture the keywords your top competitor already owns. Third, links: you have 5 outreach targets marked but not yet contacted from last month — following up on those is higher-leverage than sourcing new prospects right now. Fourth, reporting: the monthly client report is due in 6 days and traffic is trending up 6.2%, so lead with that when you send it. If you only do one thing this week, fix the crawl errors — everything else compounds on top of a healthy technical baseline.",
+        citations: [
+          { label: "Technical SEO — crawl issues" },
+          { label: "Content Planner" },
+          { label: "Backlink Opportunities" },
+        ],
+        suggestedFollowUps: [
+          "Show me the pages with crawl errors.",
+          "What's blocking the outreach follow-ups?",
+          "Draft the client report summary.",
+        ],
+        createdAt: daysAgo(9),
+      },
+    ],
+    updatedAt: daysAgo(9),
+  },
 ];
+
+export function getConversationById(id: string): AIConversation | undefined {
+  return aiConversations.find((c) => c.id === id);
+}
 
 export { AI_PROMPT_STARTERS };
 export function pickPromptStarter(seed: string) {
