@@ -80,7 +80,11 @@ export function InviteUserDialog() {
                 render={({ field }) => (
                   <Select value={field.value} onValueChange={(value) => field.onChange(value ?? field.value)}>
                     <SelectTrigger id="inviteRole" className="w-full">
-                      <SelectValue placeholder="Select a role" />
+                      <SelectValue placeholder="Select a role">
+                        {(value: string | null) =>
+                          INVITABLE_ROLES.find((rolePermission) => rolePermission.role === value)?.label ?? "Select a role"
+                        }
+                      </SelectValue>
                     </SelectTrigger>
                     <SelectContent>
                       {INVITABLE_ROLES.map((rolePermission) => (

@@ -126,7 +126,9 @@ export function AiSettingsPanel() {
             }}
           >
             <SelectTrigger className="w-full sm:w-64">
-              <SelectValue placeholder="Select a tone" />
+              <SelectValue placeholder="Select a tone">
+                {(value: string | null) => TONE_OPTIONS.find((option) => option.value === value)?.label ?? "Select a tone"}
+              </SelectValue>
             </SelectTrigger>
             <SelectContent>
               {TONE_OPTIONS.map((option) => (

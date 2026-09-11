@@ -184,7 +184,7 @@ export function ContentWriterPanel({
               <Label htmlFor="search-intent">Search intent</Label>
               <Select value={searchIntent} onValueChange={(v) => v && setSearchIntent(v as SearchIntent)}>
                 <SelectTrigger id="search-intent" className="w-full">
-                  <SelectValue />
+                  <SelectValue>{(v: string | null) => INTENT_LABELS[v as SearchIntent] ?? v}</SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   {SEARCH_INTENTS.map((intent) => (
@@ -222,7 +222,9 @@ export function ContentWriterPanel({
               <Label htmlFor="target-length">Target length</Label>
               <Select value={targetLength} onValueChange={(v) => v && setTargetLength(v as TargetLength)}>
                 <SelectTrigger id="target-length" className="w-full">
-                  <SelectValue />
+                  <SelectValue>
+                    {(v: string | null) => TARGET_LENGTH_OPTIONS.find((o) => o.value === v)?.label ?? v}
+                  </SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   {TARGET_LENGTH_OPTIONS.map((o) => (
@@ -237,7 +239,7 @@ export function ContentWriterPanel({
               <Label htmlFor="content-type">Content type</Label>
               <Select value={contentType} onValueChange={(v) => v && setContentType(v as ContentType)}>
                 <SelectTrigger id="content-type" className="w-full">
-                  <SelectValue />
+                  <SelectValue>{(v: string | null) => CONTENT_TYPE_LABELS[v as ContentType] ?? v}</SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   {CONTENT_TYPES.map((t) => (

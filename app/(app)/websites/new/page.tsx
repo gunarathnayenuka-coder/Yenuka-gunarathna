@@ -96,7 +96,9 @@ export default function NewWebsitePage() {
                   <Label htmlFor="client">Belongs to client</Label>
                   <Select value={clientId} onValueChange={(value) => setClientId(value ?? "")}>
                     <SelectTrigger id="client" className="w-full">
-                      <SelectValue placeholder="Select a client" />
+                      <SelectValue placeholder="Select a client">
+                        {(value: string | null) => clients.find((c) => c.id === value)?.name ?? "Select a client"}
+                      </SelectValue>
                     </SelectTrigger>
                     <SelectContent>
                       {clients.map((c) => (

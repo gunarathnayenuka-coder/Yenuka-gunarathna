@@ -106,7 +106,9 @@ export function ReportBuilder({ clients, initialClientId }: { clients: Client[];
             <Label htmlFor="report-client">Client</Label>
             <Select value={clientId} onValueChange={handleClientChange}>
               <SelectTrigger id="report-client" className="w-full">
-                <SelectValue placeholder="Select a client" />
+                <SelectValue placeholder="Select a client">
+                  {(value: string | null) => clients.find((c) => c.id === value)?.name ?? "Select a client"}
+                </SelectValue>
               </SelectTrigger>
               <SelectContent>
                 {clients.map((c) => (
@@ -122,7 +124,11 @@ export function ReportBuilder({ clients, initialClientId }: { clients: Client[];
             <Label htmlFor="report-website">Website</Label>
             <Select value={websiteId} onValueChange={handleWebsiteChange} disabled={!clientId}>
               <SelectTrigger id="report-website" className="w-full">
-                <SelectValue placeholder={clientId ? "Select a website" : "Select a client first"} />
+                <SelectValue placeholder={clientId ? "Select a website" : "Select a client first"}>
+                  {(value: string | null) =>
+                    clientWebsites.find((w) => w.id === value)?.domain ?? (clientId ? "Select a website" : "Select a client first")
+                  }
+                </SelectValue>
               </SelectTrigger>
               <SelectContent>
                 {clientWebsites.map((w) => (
@@ -157,7 +163,7 @@ export function ReportBuilder({ clients, initialClientId }: { clients: Client[];
             <Label htmlFor="report-type">Report type</Label>
             <Select value={reportType} onValueChange={(v) => setReportType((v as ReportType | null) ?? "monthly_seo")}>
               <SelectTrigger id="report-type" className="w-full">
-                <SelectValue />
+                <SelectValue>{(v: string | null) => REPORT_TYPE_LABELS[v as ReportType] ?? v}</SelectValue>
               </SelectTrigger>
               <SelectContent>
                 {REPORT_TYPES.map((type) => (

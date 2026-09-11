@@ -48,7 +48,11 @@ export function ChangeRoleDialog({
 
             <Select value={role} onValueChange={(value) => setRole(value ?? user.role)}>
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select a role" />
+                <SelectValue placeholder="Select a role">
+                  {(value: string | null) =>
+                    ROLE_PERMISSIONS.find((rolePermission) => rolePermission.role === value)?.label ?? "Select a role"
+                  }
+                </SelectValue>
               </SelectTrigger>
               <SelectContent>
                 {ROLE_PERMISSIONS.map((rolePermission) => (

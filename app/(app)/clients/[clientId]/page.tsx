@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   ArrowUpRight,
+  ExternalLink,
   FileText,
   Globe,
   KeyRound,
@@ -47,6 +48,9 @@ export default async function ClientOverviewPage({ params }: { params: Promise<{
         description={`${client.industry} · ${client.country}`}
         actions={
           <>
+            <Button variant="outline" render={<Link href={`/portal?client=${client.id}`} target="_blank" />}>
+              <ExternalLink /> View client portal
+            </Button>
             <Button variant="outline" render={<Link href={`/reports?client=${client.id}`} />}>
               <FileText /> Generate report
             </Button>

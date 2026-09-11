@@ -109,7 +109,9 @@ export function NotificationList({ notifications }: { notifications: Notificatio
 
           <Select value={statusFilter} onValueChange={(value) => setStatusFilter(value ?? "all")}>
             <SelectTrigger size="sm" className="w-full sm:w-36">
-              <SelectValue placeholder="All" />
+              <SelectValue placeholder="All">
+                {(value: string | null) => ({ all: "All", unread: "Unread", read: "Read" })[value ?? "all"] ?? "All"}
+              </SelectValue>
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All</SelectItem>
